@@ -41,5 +41,5 @@ for i in "${linklist[@]}"
 		cd "$gitlinkdir""$i"
 		echo -e -n "Updating \e[1;34m\"$PWD\": \e[0m"
 #			    read -n 1 -s
-		git $1 origin
+		git $action origin
 	done
