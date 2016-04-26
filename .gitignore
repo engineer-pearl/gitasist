@@ -1,0 +1,13 @@
+# PERSONAL configuration varialbes #
+####################################
+
+*config
+
+# Directories containing external links #
+########################################
+git links/To update/*
+git links/Update to/*
+
+#Exceptions#
+############
+!.gitkeep
