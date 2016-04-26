@@ -1,1 +1,3 @@
 A setup I have to make using git easier on me. Feel free to add your tools and submit pull requests!
+
+RULES: Any files containing personal information must end in config OR your gitignore must contain the appropriate files so they can be merged.

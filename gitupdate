@@ -1,0 +1,45 @@
+#!bin/bash
+
+#take from comand line
+if [[ $1 = pull ]] || [[ $1 = push ]]
+    then
+    	gitlinkdir="$(grep "$1" ~/.gitasist/config | sed 's/^.*://')"
+    	#echo "dir is $gitlinkdir"
+    else
+    	echo "Not a recognized action."
+    	exit
+    fi
+##Pull config variables
+
+#echo "script start"
+
+git config --global user.email "$(grep email ~/.gitasist/config | sed 's/^.*://')"
+git config --global user.name "$(grep username ~/.gitasist/config | sed 's/^.*://')"
+
+##The part that actually works:
+
+#echo "start with $gitlinkdir"
+
+##Okay I pulled this from http://unix.stackexchange.com/questions/39473/command-substitution-splitting-on-newline-but-not-space so I don't understand it yet.
+##What I do know is the codeblock below allows you to use spaces in your file names without turning the entire thing into one variable, keeping it from working right
+
+
+#echo "now for the \"fun\" stuff"
+set -f; IFS=$'\n'
+linklist=($(ls "$gitlinkdir"))
+set +f; unset IFS
+#echo "it should give one value for ${linklist[0]}"
+
+
+#    read -n 1 -s
+
+echo ${linklist[0]}
+for i in "${linklist[@]}"
+	do
+#	    echo "this is \"$i\""
+#	    echo "$linklistdir""$i" ##doesn't work right... [only echos $i for some reason]
+		cd "$gitlinkdir""$i"
+		echo -e -n "Updating \e[1;34m\"$PWD\": \e[0m"
+#			    read -n 1 -s
+		git $action origin
+	done
